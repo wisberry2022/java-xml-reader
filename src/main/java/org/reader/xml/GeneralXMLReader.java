@@ -2,6 +2,8 @@ package org.reader.xml;
 
 import org.reader.loader.ClassPathLoader;
 import org.reader.loader.FileLoader;
+import org.reader.xml.parser.GeneralXMLParser;
+import org.reader.xml.parser.XMLParser;
 
 import java.io.*;
 
@@ -45,7 +47,8 @@ public class GeneralXMLReader implements XMLReader {
                 message.append(line).append("\n");
             }
 
-            System.out.println(message);
+            XMLParser parser = new GeneralXMLParser(message.toString());
+            parser.extractTag();
         } catch (IOException e) {
             e.printStackTrace();
         }
