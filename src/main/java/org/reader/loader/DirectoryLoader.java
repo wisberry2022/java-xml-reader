@@ -8,12 +8,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class DirectoryLoader implements Loader {
+public class DirectoryLoader extends FileLoader {
 
     private String root = "D:/";
-
-    // 'shelf' variable is a list that is presumed to contain xml files
-    private List<File> shelf;
 
     public DirectoryLoader() {
 
@@ -40,35 +37,16 @@ public class DirectoryLoader implements Loader {
 
         // When the directory contains no files, return an empty List
         if(files == null) {
-            shelf = new ArrayList<>();
+            super.shelf = new ArrayList<>();
             return;
         }
 
         // assign a list of files obtained by reading the directory to the 'shelf' variable
-        shelf = Arrays.asList(files);
+        super.shelf = Arrays.asList(files);
     }
 
-    @Override
     public List<File> extractXmlFiles() {
-        // if shelter directory is empty, just return it
-        if(shelf.isEmpty()) {
-            return shelf;
-        }
-
-        List<File> xmls = new ArrayList<>();
-
-        for(File file : shelf) {
-            if(!file.isFile()) {
-                continue;
-            }
-            String ext = FileUtil.extractExtension(file);
-            if(ext.equals("xml")) {
-                xmls.add(file);
-            }
-        }
-
-        return xmls;
-
+        return super.extractXmlFiles();
     }
 
     // Return the full url as a 'String' type.

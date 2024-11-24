@@ -8,6 +8,4 @@ public interface Loader {
 
     void load(String dirName);
 
-    List<File> extractXmlFiles();
-
 }

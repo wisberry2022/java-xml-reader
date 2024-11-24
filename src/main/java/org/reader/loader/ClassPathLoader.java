@@ -1,7 +1,6 @@
 package org.reader.loader;
 
 import org.common.constants.InternalErrorCode;
-import org.common.utils.FileUtil;
 import org.example.Main;
 
 import java.io.File;
@@ -11,12 +10,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public class ClassPathLoader implements Loader {
+public class ClassPathLoader extends FileLoader implements Loader {
 
     private final ClassLoader root;
-
-    // 'shelf' variable is a list that is presumed to contain xml files
-    private List<File> shelf;
 
     public ClassPathLoader() {
         root = Main.class.getClassLoader();
@@ -38,30 +34,12 @@ public class ClassPathLoader implements Loader {
         Optional<File[]> files = Optional.ofNullable(new File(url.getFile()).listFiles());
 
         // assign a list of files obtained by reading the directory to the 'shelf' variable
-        shelf = files.map(Arrays::asList).orElseGet(ArrayList::new);
+        super.shelf = files.map(Arrays::asList).orElseGet(ArrayList::new);
     }
 
-    @Override
     public List<File> extractXmlFiles() {
         // if shelter directory is empty, just return it
-        if(shelf.isEmpty()) {
-            return shelf;
-        }
-
-        List<File> xmls = new ArrayList<>();
-
-        for(File file : shelf) {
-            if(!file.isFile()) {
-                continue;
-            }
-            String ext = FileUtil.extractExtension(file);
-            if(ext.equals("xml")) {
-                xmls.add(file);
-            }
-        }
-
-        return xmls;
-
+        return super.extractXmlFiles();
     }
 
 }
