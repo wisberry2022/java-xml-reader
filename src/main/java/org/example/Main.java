@@ -14,12 +14,16 @@ public class Main {
     public static void main(String[] args) {
 //        FileLoader loader = new DirectoryLoader();
 //        loader.load("java-project/xml-reader/src/main/resources/org/shelf");
-//        List<File> xmls = loader.extractXmlFiles();
-//        System.out.println(xmls);
+//        loader.extractXmlFiles();
+//        loader.showXMLFiles();
+//        System.out.println(loader.select("introduce2.xml"));
 
-        FileLoader loader = new ClassPathLoader();
-        loader.load("org/shelf");
-        List<File> xmls = loader.extractXmlFiles();
-        System.out.println(xmls);
+//        FileLoader loader = new ClassPathLoader();
+//        loader.load("org/shelf");
+//        loader.extractXmlFiles();
+//        loader.showXMLFiles();
+//        System.out.println(loader.select("introduce.xml"));
+
+
     }
 }

@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface Loader {
 
-    void load(String dirName);
+    void load(String shelf);
 
 }

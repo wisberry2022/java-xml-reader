@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public class ClassPathLoader extends FileLoader implements Loader {
+public class ClassPathLoader extends FileLoader {
 
     private final ClassLoader root;
 
@@ -19,8 +19,8 @@ public class ClassPathLoader extends FileLoader implements Loader {
     }
 
     @Override
-    public void load(String dirName) {
-        Optional<URL> dir = Optional.ofNullable(root.getResource(dirName));
+    public void load(String shelf) {
+        Optional<URL> dir = Optional.ofNullable(root.getResource(shelf));
 
         // When the target directory is empty, throw RuntimeException
         if(dir.isEmpty()) {
@@ -34,9 +34,13 @@ public class ClassPathLoader extends FileLoader implements Loader {
         super.shelf = files.map(Arrays::asList).orElseGet(ArrayList::new);
     }
 
-    public List<File> extractXmlFiles() {
-        // if shelter directory is empty, just return it
-        return super.extractXmlFiles();
+    @Override
+    public File select(String xml) {
+        return super.xmls
+                .stream()
+                .filter(file -> file.getName().equals(xml))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException(InternalErrorCode.NOT_EXISTED_FILE.getMessage()));
     }
 
 }

@@ -11,14 +11,14 @@ public abstract class FileLoader implements Loader {
     // 'shelf' variable is a list that is presumed to contain xml files
     protected List<File> shelf;
 
+    protected List<File> xmls = new ArrayList<>();
+
     // retrieve only XML files from list stored in the 'shelf' variable
-    public List<File> extractXmlFiles() {
+    public void extractXmlFiles() {
         // if shelter directory is empty, just return it
         if(shelf.isEmpty()) {
-            return shelf;
+            return;
         }
-
-        List<File> xmls = new ArrayList<>();
 
         for(File file : shelf) {
             if(!file.isFile()) {
@@ -29,14 +29,21 @@ public abstract class FileLoader implements Loader {
                 xmls.add(file);
             }
         }
-
-        return xmls;
     }
 
     // read the directory using the provided path
     // return the files as a List type after reading them
     // if the directory is empty, simply return an empty list
     @Override
-    public void load(String dirname) {};
+    public void load(String shelf) {};
+
+    // Search for the XML file specified by the provided filename in the xmls list
+    public abstract File select(String xml);
+
+    public void showXMLFiles() {
+        for(File file : xmls) {
+            System.out.println("xml files " + file.getName());
+        }
+    }
 
 }

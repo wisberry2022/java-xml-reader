@@ -21,8 +21,8 @@ public class DirectoryLoader extends FileLoader {
     }
 
     @Override
-    public void load(String dirName) {
-        String url = getFullDir(dirName);
+    public void load(String shelf) {
+        String url = getFullDir(shelf);
         File dir = new File(url);
 
         // When the directory is empty, throw IllegalArgumentException
@@ -42,8 +42,13 @@ public class DirectoryLoader extends FileLoader {
         super.shelf = Arrays.asList(files);
     }
 
-    public List<File> extractXmlFiles() {
-        return super.extractXmlFiles();
+    @Override
+    public File select(String xml) {
+        return super.xmls
+                .stream()
+                .filter(file -> file.getName().equals(xml))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException(InternalErrorCode.NOT_EXISTED_FILE.getMessage()));
     }
 
     // Return the full url as a 'String' type.
