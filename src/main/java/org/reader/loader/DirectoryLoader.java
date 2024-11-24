@@ -20,9 +20,6 @@ public class DirectoryLoader extends FileLoader {
         this.root = root;
     }
 
-    // read the directory using the provided path
-    // return the files as a List type after reading them
-    // if the directory is empty, simply return an empty list
     @Override
     public void load(String dirName) {
         String url = getFullDir(dirName);

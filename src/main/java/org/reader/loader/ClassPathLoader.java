@@ -18,9 +18,6 @@ public class ClassPathLoader extends FileLoader implements Loader {
         root = Main.class.getClassLoader();
     }
 
-    // read the directory using the provided path
-    // return the files as a List type after reading them
-    // if the directory is empty, simply return an empty list
     @Override
     public void load(String dirName) {
         Optional<URL> dir = Optional.ofNullable(root.getResource(dirName));
