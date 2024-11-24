@@ -8,7 +8,11 @@ public enum InternalErrorCode {
     // Loader Error Code
     NOT_EXISTED_DIRECTORY("NOT_EXISTED_DIRECTORY", "존재하지 않은 디렉토리입니다."),
     NOT_DIRECTORY("NOT_DIRECTORY", "디렉토리가 아닙니다."),
-    NOT_EXISTED_FILE("NOT_EXISTED_FILE", "존재하지 않는 파일입니다.");
+    NOT_EXISTED_FILE("NOT_EXISTED_FILE", "존재하지 않는 파일입니다."),
+
+    // XML Parser Error Code
+    NOT_VALIDATED_XML("NOT_VALIDATED_XML", "유효한 xml 형태가 아닙니다.");
+
 
     private String code;
     private String message;
