@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<foods>
+    <food>
+        <name>바나나</name>
+        <color>노랑</color>
+    </food>
+
+    <food>
+        <name>사과</name>
+        <color>빨강</color>
+    </food>
+</foods>

@@ -12,10 +12,13 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         Loader loader = new DirectoryLoader();
-        List<File> files = loader.load("java-project/xml-reader/src/main/resources/org/shelter");
+        loader.load("java-project/xml-reader/src/main/resources/org/shelf");
+        List<File> xmls = loader.extractXmlFiles();
+        System.out.println(xmls);
 
-        for(File file: files) {
-            System.out.println(file);
-        }
+//        Loader loader = new ClassPathLoader();
+//        loader.load("org/shelf");
+//        List<File> xmls = loader.extractXmlFiles();
+//        System.out.println(xmls);
     }
 }
